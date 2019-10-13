@@ -40,3 +40,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
+
+
+Route::get('test', function(){
+    $faker = \Faker\Factory::create();
+    dd($faker->name ." - ". $faker->unique()->email .' - ' . $faker->phoneNumber." - ". $faker->address);
+});

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,10 +49,22 @@ class Handler extends ExceptionHandler
     // {
     //     return parent::render($request, $exception);
     // }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return response()->json(['error' => 'Unauthenticated'], 401);
+    }
     public function render($request, Exception $exception)
     {
         // This will replace our 404 response with
         // a JSON response.
+       // dd($exception);
+
+        if ( $exception instanceof \Symfony\Component\Routing\Exception\RouteNotFoundException){
+            return response()->json([
+                'error' => 'Resource not found'
+            ], 404);
+        }
+
         if ($exception instanceof ModelNotFoundException &&  $request->wantsJson()) {
             return response()->json([
                 'error' => 'Resource not found'
