@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "laravel",
+            "dialect": "MariaDB",
+            "isActive": true,
+            "isConnected": true,
+            "name": "mariadb",
+            "password": "laravel",
+            "port": 3306,
+            "server": "localhost",
+            "username": "laravel"
+        }
+    ]
+}
