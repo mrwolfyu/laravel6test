@@ -58,15 +58,13 @@ class Handler extends ExceptionHandler
         // This will replace our 404 response with
         // a JSON response.
        // dd($exception);
-       if ( $exception instanceof \Symfony\Component\Routing\Exception\RouteNotFoundException || 
-       $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException\ModelNotFoundException ) {
-           return response()->json([
-               'error' => 'Resource not found'
-           ], 404);
-       }
-        if ( ($exception instanceof \Symfony\Component\Routing\Exception\RouteNotFoundException || 
-        $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException\ModelNotFoundException )
-        &&  !$request->wantsJson()) {
+    //    if ( $exception instanceof \Symfony\Component\Routing\Exception\RouteNotFoundException || 
+    //    $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException\ModelNotFoundException ) {
+    //        return response()->json([
+    //            'error' => 'Resource not found'
+    //        ], 404);
+    //    }
+        if ( $request->wantsJson()) {
             return response()->json([
                 'error' => 'Resource not found'
             ], 404);
